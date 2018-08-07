@@ -1,0 +1,7 @@
+model = WaveEquation
+timeMethod = secondDerivative
+
+dimension = 
+
+%%% parameters
+c =     % wave speed
