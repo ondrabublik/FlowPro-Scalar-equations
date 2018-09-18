@@ -51,6 +51,10 @@ public class WaveEquation implements Equation {
     }
 
     @Override
+    public void setState(double dt, double t) {  
+    }
+    
+    @Override
     public double[] constInitCondition() {
         return WIn;
     }
