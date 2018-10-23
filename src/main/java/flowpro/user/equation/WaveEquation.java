@@ -12,7 +12,6 @@ public class WaveEquation implements Equation {
 
     int dim;
     int nEqs;
-    boolean isDiffusive;
     
     @Override
     public int dim() {
@@ -36,7 +35,7 @@ public class WaveEquation implements Equation {
     
     @Override
     public boolean isSourcePresent() {
-        return false;
+        return true;
     }
     
     @Override
@@ -45,9 +44,8 @@ public class WaveEquation implements Equation {
         c = props.getDouble("c");
         
         dim = props.getInt("dimension");
-        nEqs = 1;
+        nEqs = 2;
         WIn = new double[nEqs];
-        WIn[0] = 0;
     }
 
     @Override
@@ -72,7 +70,7 @@ public class WaveEquation implements Equation {
 
     @Override
     public double[] sourceTerm(double[] W, double[] dW, ElementData elem) { // zdrojovy clen
-        throw new UnsupportedOperationException("sourceTerm is not present");
+        return new double[]{W[1],0};
     }
 
     @Override
@@ -82,10 +80,12 @@ public class WaveEquation implements Equation {
         switch (TT) {
             case (-1): // stena
                 WR[0] = 0;
+                WR[1] = 0;
                 break;
             case (-2):
                 double omega = 10;
                 WR[0] = Math.sin(omega * t);
+                WR[1] = 0;
                 break;
 
         }
@@ -100,11 +100,9 @@ public class WaveEquation implements Equation {
     @Override
     public double[] diffusiveFlux(double[] W, double[] dW, double[] n, ElementData elem) {
         double[] fv = new double[nEqs];
-        double dWn = 0;
         for(int d = 0; d < dim; d++){
-            dWn += dW[d] * n[d];
+            fv[1] += c * dW[2*d]*n[d];
         }
-        fv[0] = c * dWn;
         return fv;
     }
 
@@ -140,10 +138,12 @@ public class WaveEquation implements Equation {
     }
     
     @Override
-    public double[] getResults(double[] W, double[] X, String name) {
+    public double[] getResults(double[] W, double[] dW, double[] X, String name) {
         switch (name) {
             case "u":
                 return new double[]{W[0]};
+            case "v":
+                return new double[]{W[1]};
 
             default:
                 throw new UnsupportedOperationException("undefined value " + name);

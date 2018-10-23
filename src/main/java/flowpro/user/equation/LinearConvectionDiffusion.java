@@ -197,7 +197,7 @@ public class LinearConvectionDiffusion implements Equation {
     }
 
     @Override
-    public double[] getResults(double[] W, double[] X, String name) {
+    public double[] getResults(double[] W, double[] dW, double[] X, String name) {
         switch (name) {
             case "u":
                 return new double[]{W[0]};

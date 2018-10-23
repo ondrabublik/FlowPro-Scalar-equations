@@ -134,7 +134,7 @@ public class GCL implements Equation {
     }
 
     @Override
-    public double[] getResults(double[] W, double[] X, String name) {
+    public double[] getResults(double[] W, double[] dW, double[] X, String name) {
         switch (name) {
             case "gcl":
                 return new double[]{W[0]};
