@@ -188,6 +188,11 @@ public class LinearConvectionDiffusion implements Equation {
     }
 
     @Override
+    public double[] combineShockSensors(double[] shock){
+        return shock;
+    }
+    
+    @Override
     public void saveReferenceValues(String filePath) throws IOException {
     }
 
