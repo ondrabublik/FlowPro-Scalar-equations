@@ -122,10 +122,6 @@ public class WaveEquation implements Equation {
     }
 
     @Override
-    public void limitUnphysicalValues(double[] Ws, double[] W, int nBasis) { // limituje zaporne hodnoty
-    }
-
-    @Override
     public double[] combineShockSensors(double[] shock){
         return shock;
     }

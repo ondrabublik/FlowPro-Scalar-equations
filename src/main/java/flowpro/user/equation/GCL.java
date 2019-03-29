@@ -54,9 +54,6 @@ public class GCL implements Equation {
         return new double[]{1};
     }
 
-    @Override
-    public void limitUnphysicalValues(double[] Ws, double[] W, int nBasis) { // limituje zaporne hodnoty
-    }
 
     //  nevazky tok stenou _____________________________________________________
     @Override
