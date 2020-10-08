@@ -165,6 +165,11 @@ public class LinearConvectionDiffusion implements Equation {
     }
 
     @Override
+	public double[] normalStress(double[] W, double[] dW, double[] normal) {	
+		throw new UnsupportedOperationException("normal stress is not present");
+	}
+    
+    @Override
     public double maxEigenvalue(double[] W, ElementData elem) {
         double max = a[0];
         for (int d = 1; d < dim; d++) {

@@ -134,6 +134,11 @@ public class TransportEquation implements Equation {
     }
 
     @Override
+	public double[] normalStress(double[] W, double[] dW, double[] normal) {	
+		throw new UnsupportedOperationException("normal stress is not present");
+	}
+    
+    @Override
     public double maxEigenvalue(double[] W, ElementData elem) {
         double max = 0;
         for(int d = 0; d < dim; d++) {
